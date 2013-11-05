@@ -10,7 +10,7 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
-
+  
   grunt.initConfig({
     yeoman: {
       // configurable paths
@@ -25,6 +25,14 @@ module.exports = function (grunt) {
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
+      },
+      typescript: {
+        files: ['app/scripts/**/*.ts'],
+        tasks: ['ts:dev']
+      },
+      typescriptTest: {
+        files: ['test/spec/**/*.ts'],
+        tasks: ['ts:test']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -249,14 +257,19 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
+        'ts:dev',
+        'ts:test',
         'copy:styles'
       ],
       test: [
         'coffee',
+        'ts:dev',
+        'ts:test',
         'copy:styles'
       ],
       dist: [
         'coffee',
+        'ts:dist',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -292,6 +305,44 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    ts: {
+      dev: {                                 // a particular target   
+        src: ["app/scripts/**/*.ts"],        // The source typescript files, http://gruntjs.com/configuring-tasks#files
+        //html: ["app/view/**/*.tpl.html"], // The source html files, https://github.com/basarat/grunt-ts#html-2-typescript-support
+        reference: "./app/scripts/reference.ts",  // If specified, generate this file that you can use for your reference management
+        //out: 'test/out.js',                // If specified, generate an out.js file which is the merged js file                     
+        outDir: '.tmp/scripts',    // If specified, the generate javascript files are placed here. Only works if out is not specified
+        //watch: 'app',                     // If specified, watches this directory for changes, and re-runs the current target  
+        options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
+          target: 'es3',            // 'es3' (default) | 'es5'
+          module: 'amd',       // 'amd' (default) | 'commonjs'
+          sourcemap: true,          // true  (default) | false
+          declaration: false,       // true | false  (default)                
+          comments: false           // true | false (default)
+        },
+      },
+      test: {                                 // a particular target   
+        src: ["test/spec/**/*.ts"],        // The source typescript files, http://gruntjs.com/configuring-tasks#files
+        //html: ["app/view/**/*.tpl.html"], // The source html files, https://github.com/basarat/grunt-ts#html-2-typescript-support
+        //reference: "./app/reference.ts",  // If specified, generate this file that you can use for your reference management
+        //out: 'test/out.js',                // If specified, generate an out.js file which is the merged js file                     
+        outDir: '.tmp/spec',    // If specified, the generate javascript files are placed here. Only works if out is not specified
+        //watch: 'app',                     // If specified, watches this directory for changes, and re-runs the current target  
+        options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
+          target: 'es3',            // 'es3' (default) | 'es5'
+          module: 'amd',       // 'amd' (default) | 'commonjs'
+          sourcemap: true,          // true  (default) | false
+          declaration: false,       // true | false  (default)                
+          comments: false           // true | false (default)
+        },
+      },
+      dist: {                        // another target 
+        src: ["app/**/*.ts"],
+        options: {                  // overide the main options for this target 
+          sourcemap: false,
+        }
+      }      
     }
   });
 
