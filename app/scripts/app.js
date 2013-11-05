@@ -1,10 +1,6 @@
 'use strict';
 
-angular.module('testGruntMavenApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize'
-])
+angular.module('testGruntMavenApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

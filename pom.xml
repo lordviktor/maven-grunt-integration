@@ -32,6 +32,19 @@
 				<version>1.2.1</version>
 				<executions>
 					<execution>
+						<id>Compile typescript test files</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>grunt</executable>
+							<arguments>
+								<argument>ts:test</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
 						<id>run node package manager install</id>
 						<phase>prepare-package</phase>
 						<goals>
