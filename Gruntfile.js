@@ -343,6 +343,11 @@ module.exports = function (grunt) {
           sourcemap: false,
         }
       }      
+    },
+    bower: {
+      target: {
+        rjsConfig: 'app/scripts/config/main.js'
+      }
     }
   });
 
