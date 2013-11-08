@@ -10,7 +10,8 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
-  
+  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
   grunt.initConfig({
     yeoman: {
       // configurable paths
@@ -68,6 +69,13 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+            context: '/javawebpoc-web',
+            host: '127.0.0.1',
+            port: 8080,
+        }
+      ],
       livereload: {
         options: {
           open: true,
@@ -360,6 +368,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'configureProxies',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
