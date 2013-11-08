@@ -2,17 +2,17 @@
 ///<reference path='../../../reference.ts'/>
 module controllers.crud.student {
 
-    interface StudentListViewModel{
+    export interface StudentListViewModel{
         state:String;
         students: entity.Student[];
     }
 
 	export class StudentListCtrl {
-		constructor($scope:ng.IScope){
+
+		constructor($scope: StudentListViewModel, $userService: batatinha.contract.StudentServiceContract){
+			
+			$userService.all().then((data) => $scope.students = data);
 
 		}
 	}
 }
-
-angular.module('javawebpoc-html')
-	.controller('StudentListCtrl', ($scope) => new controllers.crud.student.StudentListCtrl($scope));

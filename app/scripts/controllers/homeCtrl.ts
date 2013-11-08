@@ -11,5 +11,3 @@ module controllers{
 		}
 	}
 }
-
-angular.module('javawebpoc-html').controller('HomeCtrl', ($scope) => new controllers.HomeCtrl($scope));

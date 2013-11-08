@@ -1,6 +1,6 @@
 ///<reference path='../../../reference.ts'/>
 
-export module service.impl.base {
+module service.impl.base {
     export class AbstractCrudServiceImpl<T extends entity.base.BaseEntity> implements batatinha.contract.base.CrudServiceContract<T> {
 
         private http: ng.IHttpService;
@@ -11,25 +11,25 @@ export module service.impl.base {
             this.rootUrlContext = "rest/" + urlContext + "/";
         }
 
-        save(item: T) {
+        save(item: T): ng.IPromise<any> {
             return this.http.post(this.rootUrlContext, item);
         }
 
-        update(item: T) {
+        update(item: T): ng.IPromise<any> {
             return this.http.put(this.rootUrlContext, item);
         }
 
-        remove(item: T) {
+        remove(item: T): ng.IPromise<any> {
             return this.http.delete(this.rootUrlContext + item.id);
         }
 
-        findById(id: number) {
+        findById(id: number): ng.IPromise<T> {
             return this.http.get(this.rootUrlContext + id);
         }
 
-        all() {
+        all(): ng.IPromise<Array<T>> {
             return this.http.get(this.rootUrlContext);
         }
-
+        
     }
 }

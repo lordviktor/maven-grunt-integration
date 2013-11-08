@@ -1,1 +1,30 @@
-<p>This is the crud/user/userList view.</p>
+<div class="container-fluid" data-ng-controller="StudentListCtrl">
+	<div class="row-fluid">
+		<div class="span12">
+			<h3>Lista de Estudantes</h3>
+
+			<ul class="nav nav-pills nav-stacked">
+				<li ng-repeat="student in students">
+					<a href="#/student/{{student.id}}"> {{student.name}} </a>
+				</li> 
+			</ul>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info" data-ng-repeat="student in students">
+						<td>{{student.id}}</td>
+						<td><a href="#/crud/student/{{student.id}}">{{student.name}}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

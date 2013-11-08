@@ -3,7 +3,7 @@
 /// <reference path="../definition_files/requirejs/require.d.ts" />
 
 //grunt-start
-/// <reference path="app.ts" />
+/// <reference path="config/app.ts" />
 /// <reference path="controllers/crud/student/studentEditCtrl.ts" />
 /// <reference path="controllers/crud/student/studentListCtrl.ts" />
 /// <reference path="controllers/homeCtrl.ts" />

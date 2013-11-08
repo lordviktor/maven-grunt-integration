@@ -1,7 +1,6 @@
 ///<reference path='../../../reference.ts'/>
 
 module batatinha.contract.base {
-
     export interface CrudServiceContract<T extends entity.base.BaseEntity> {
 
         save(item: T) : ng.IPromise<any>;
@@ -13,6 +12,6 @@ module batatinha.contract.base {
         findById(item: number) : ng.IPromise<T>;
 
         all() : ng.IPromise<Array<T>>;
-
+        
     }
 }
