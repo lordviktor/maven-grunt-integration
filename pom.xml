@@ -40,13 +40,13 @@
 						<configuration>
 							<executable>grunt</executable>
 							<arguments>
-								<argument>ts:test</argument>
+								<argument>concurrent:test</argument>
 							</arguments>
 						</configuration>
 					</execution>
 					<execution>
 						<id>run node package manager install</id>
-						<phase>prepare-package</phase>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -72,7 +72,7 @@
 					</execution>
 					<execution>
 						<id>run bower dependency download</id>
-						<phase>generate-sources</phase>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
