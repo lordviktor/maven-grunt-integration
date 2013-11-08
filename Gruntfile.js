@@ -310,9 +310,9 @@ module.exports = function (grunt) {
       dev: {                                 // a particular target   
         src: ["app/scripts/**/*.ts"],        // The source typescript files, http://gruntjs.com/configuring-tasks#files
         //html: ["app/view/**/*.tpl.html"], // The source html files, https://github.com/basarat/grunt-ts#html-2-typescript-support
-        reference: "./app/scripts/reference.ts",  // If specified, generate this file that you can use for your reference management
+        reference: "app/scripts/reference.ts",  // If specified, generate this file that you can use for your reference management
         //out: 'test/out.js',                // If specified, generate an out.js file which is the merged js file                     
-        outDir: '.tmp/scripts',    // If specified, the generate javascript files are placed here. Only works if out is not specified
+        outDir: 'app/scripts',    // If specified, the generate javascript files are placed here. Only works if out is not specified
         //watch: 'app',                     // If specified, watches this directory for changes, and re-runs the current target  
         options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
           target: 'es3',            // 'es3' (default) | 'es5'
@@ -332,7 +332,7 @@ module.exports = function (grunt) {
         options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
           target: 'es3',            // 'es3' (default) | 'es5'
           module: 'amd',       // 'amd' (default) | 'commonjs'
-          sourcemap: true,          // true  (default) | false
+          sourcemap: false,          // true  (default) | false
           declaration: false,       // true | false  (default)                
           comments: false           // true | false (default)
         },

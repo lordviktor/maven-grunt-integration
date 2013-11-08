@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.css">
         <!-- endbuild -->
 </head>
-  <body ng-app="testGruntMavenApp">
+  <body ng-app="javawebpoc-html" class="background-dark">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -26,8 +26,13 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <ng-include src="'/views/component/sidebar.html'"></ng-include>
+    
+    <div class="wrap">
+      <div class="content container">
+        <div class="container" ng-view=""></div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -40,8 +45,8 @@
        ga('send', 'pageview');
     </script>
 
-    <script src="lib/jquery/jquery.js"></script>
-    <script src="lib/angular/angular.js"></script>
+        <script src="lib/jquery/jquery.js"></script>
+        <script src="lib/angular/angular.js"></script>
 
         <!-- build:js scripts/plugins.js -->
         <script src="lib/bootstrap-sass/js/bootstrap-affix.js"></script>
@@ -67,9 +72,9 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/crud/user/userEdit.js"></script>
-        <script src="scripts/controllers/crud/user/userList.js"></script>
+        <script src="scripts/controllers/homeCtrl.js"></script>
+        <script src="scripts/controllers/crud/student/studentEditCtrl.js"></script>
+        <script src="scripts/controllers/crud/student/studentListCtrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>
