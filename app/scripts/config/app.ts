@@ -17,5 +17,5 @@ angular.module('javawebpoc-html', [])
 		})
 	.controller('StudentListCtrl', ($scope, $userService) => new controllers.crud.student.StudentListCtrl($scope, $userService))
 	.controller('HomeCtrl', ($scope) => new controllers.HomeCtrl($scope))
-	.service("$userService", ($timeout) => new service.mock.StudentServiceMock($timeout));
-
+	//.service("$userService", ($timeout) => new service.mock.StudentServiceMock($timeout));
+	.service("$userService", ($http) => new service.impl.StudentServiceImpl($http));
