@@ -24,11 +24,21 @@ module service.impl.base {
         }
 
         findById(id: number): ng.IPromise<T> {
-            return this.http.get(this.rootUrlContext + id);
+            return this.http.get(this.rootUrlContext + id)
+                .then(
+                    (x) => {
+                        if(x) return x.data
+                    }
+                );
         }
 
         all(): ng.IPromise<Array<T>> {
-            return this.http.get(this.rootUrlContext);
+            return this.http.get(this.rootUrlContext)
+                .then(
+                    (x) => {
+                        if(x) return x.data
+                    }
+                );
         }
         
     }

@@ -10,7 +10,6 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
-  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
   grunt.initConfig({
     yeoman: {
@@ -66,14 +65,17 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       proxies: [
         {
-            context: '/javawebpoc-web',
-            host: '127.0.0.1',
+            context: '/rest',
+            host: 'localhost',
             port: 8080,
+            rewrite: {
+              '^/rest': '/javawebpoc-web/rest/'
+            }
         }
       ],
       livereload: {
@@ -82,7 +84,19 @@ module.exports = function (grunt) {
           base: [
             '.tmp',
             '<%= yeoman.app %>'
-          ]
+          ],
+          middleware: function (connect, options) {
+            var config = [ 
+              // Serve static files.
+              connect.static(options.base[1]),
+              // Make empty directories browsable.
+              connect.directory(options.base[1])
+            ];
+
+            var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+            config.unshift(proxy);
+            return config;
+          }
         }
       },
       test: {

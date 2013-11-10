@@ -1,6 +1,6 @@
 /// <reference='reference.ts' />
 
-angular.module('javawebpoc-html', [])
+angular.module('javawebpoc-html', ['ngRoute'])
 	.config(($routeProvider : ng.IRouteProvider) =>{
 		$routeProvider
 		.when('/', {
